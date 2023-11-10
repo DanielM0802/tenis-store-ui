@@ -89,17 +89,14 @@ function NavListMenu() {
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">Home</ListItem>
-      </Typography>
-      <NavListMenu />
-      <Typography
+
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-sm w-auto">Pelota</ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-sm w-auto">Tenis</ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-sm w-auto">Accesorios</ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-sm w-auto">Ropa</ListItem>
+      
+      
+      {/* <Typography
         as="a"
         href="#"
         variant="small"
@@ -109,7 +106,7 @@ function NavList() {
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           Contact Us
         </ListItem>
-      </Typography>
+      </Typography> */}
     </List>
   );
 }
@@ -133,7 +130,7 @@ export function NavbarTenis() {
           variant="h6"
           className="mr-4 cursor-pointer py-1.5 lg:ml-2"
         >
-          Material Tailwind
+          Tenis Store
         </Typography>
         <div className="hidden lg:block">
           <NavList />
