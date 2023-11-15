@@ -1,6 +1,7 @@
 import { Producto } from '../../components/Producto'
 import { useState, useEffect } from 'react'
-
+import { Typography } from '@material-tailwind/react';
+import { Link } from 'react-router-dom';
 
 
 function Raquetas() {
@@ -128,14 +129,21 @@ function Raquetas() {
   const nombres = raquetas.map( raqueta => raqueta.nombre  )
 
   return (
-    <div>
-      <h1>Raquetas</h1>
+    <div className='container px-12 mx-auto'>
+      <Typography variant='h1' color="blue-gray" className='text-2xl my-5'>
+        Raquetas
+      </Typography>
 
-      {
-        raquetas.map( raqueta => (
-          <Producto producto={raqueta} />
-        ))
-      }
+      <div className='grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+        {
+          raquetas.map( raqueta => (
+            <Link to="/productos/detalle" state={ {producto: raqueta}  }>
+              <Producto producto={raqueta} />
+            </Link>
+          ))
+        }
+      </div>
+
 
       
 

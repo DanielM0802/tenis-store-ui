@@ -12,7 +12,7 @@ import {
     const {nombre, url_imagen, precio_anterior, precio_actual, descripcion} = producto;
 
     return (
-      <Card className="w-96">
+      <Card className="w-80 flex flex-col justify-between">
         <CardHeader shadow={false} floated={false} className="h-96">
           <img
             src={url_imagen}
