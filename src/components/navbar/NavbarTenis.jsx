@@ -78,11 +78,13 @@ export function NavbarTenis() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Button variant="text" size="sm" color="blue-gray">
-            Log In
-          </Button>
+          <NavLink to="/login">
+            <Button variant="text" size="sm" color="blue-gray">
+              Login
+            </Button>
+          </NavLink>
           <Button variant="gradient" size="sm">
-            Sign In
+            Registro
           </Button>
         </div>
         <IconButton
@@ -102,10 +104,10 @@ export function NavbarTenis() {
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
           <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-            Log In
+            Login
           </Button>
           <Button variant="gradient" size="sm" fullWidth>
-            Sign In
+            Registro
           </Button>
         </div>
       </Collapse>
