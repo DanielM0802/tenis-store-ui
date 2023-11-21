@@ -83,9 +83,11 @@ export function NavbarTenis() {
               Login
             </Button>
           </NavLink>
-          <Button variant="gradient" size="sm">
-            Registro
-          </Button>
+          <NavLink to="/registro">
+            <Button variant="gradient" size="sm">
+              Registro
+            </Button>
+          </NavLink>
         </div>
         <IconButton
           variant="text"
