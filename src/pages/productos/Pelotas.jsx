@@ -1,5 +1,6 @@
 import React from 'react'
 import { Producto } from '../../components/Producto'
+import { Typography } from '@material-tailwind/react';
 
 function Pelotas() {
 
@@ -70,9 +71,23 @@ function Pelotas() {
   
 
   return (
-    <div>
-      <h1>Pelotas</h1>
-      <Producto producto={pelotas[0]}/>
+    <div className='container px-12 mx-auto'>
+      <Typography variant='h1' color="blue-gray" className='text-2xl my-5'>
+        Pelotas
+      </Typography>
+
+      <div className='grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+          {
+            
+            pelotas.map(pelota => (
+
+            <Producto producto= {pelota}/>
+
+            ))
+
+          }
+      </div>
+
     </div>
   )
 }
