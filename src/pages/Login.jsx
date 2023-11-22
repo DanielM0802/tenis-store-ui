@@ -8,7 +8,7 @@ import {
    
   export function Login() {
     return (
-       <Card color="transparent" shadow={false}>
+       <Card color="transparent" shadow={false} className="mt-6">
         <Typography variant="h4" color="blue-gray">
           Login
         </Typography>

@@ -5,7 +5,7 @@ import {
     Typography,
     Alert
   } from "@material-tailwind/react";
-  import { NavLink } from "react-router-dom";
+  import { NavLink, useNavigate } from "react-router-dom";
   import { useState } from "react"; 
 
   export function Registro() {
@@ -15,6 +15,9 @@ import {
         correo: "",
         password: ""
     })
+
+    const navigate = useNavigate();
+
 
     const [error, setError] = useState();
 
@@ -28,8 +31,6 @@ import {
     const registrarUsuario = (e) => {
         e.preventDefault();
 
-        console.log('tenemos que validar el objeto user: ')
-        console.log(usuario);
 
         const {nombre, correo, password} = usuario;
 
@@ -38,17 +39,24 @@ import {
             return;
         }
 
+        //validar fuerza de la password
+        const passwordRegex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
 
+        if( !passwordRegex.test( password ) ){
+          setError("La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.")
+          return;
+        }
+        
         console.log('registrando usuario...')
+        navigate('/')
         //llamar a ruta encargada de registrar usuarios
 
     }
-
     
 
 
     return (
-       <Card color="transparent" shadow={false}>
+       <Card color="transparent" shadow={false} className="mt-6">
         <Typography variant="h4" color="blue-gray">
           Registro
         </Typography>
