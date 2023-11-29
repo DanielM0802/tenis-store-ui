@@ -41,7 +41,7 @@ function Perfil() {
           </Tab>
         ))}
       </TabsHeader>
-      <TabsBody className="bg-green-500 ">
+      <TabsBody className=" ">
         {data.map(({ value }) => (
           <TabPanel key={value} value={value}>
             

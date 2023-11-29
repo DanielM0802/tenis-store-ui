@@ -7,7 +7,8 @@ function ProductoDetalle() {
     const {nombre, url_imagen, precio_anterior, precio_actual, descripcion} = state.producto;
     console.log(state.producto)
   return (
-    <div>
+    <div className='container px-12 mx-auto'>
+
 
         <Typography variant='h1' color="blue-gray" className='text-3xl my-5'>
             {nombre}

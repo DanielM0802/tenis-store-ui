@@ -18,7 +18,7 @@ function Pedidos() {
   ]
 
   return (
-    <Card className="w-4/5 bg-deep-orange-400">
+    <Card className=" ">
       <List>
 
 
@@ -26,19 +26,24 @@ function Pedidos() {
           pedidos.map(  pedido => ( 
             <ListItem key={pedido.numeroPedido}>
 
-              <Typography variant='p' color="blue-gray" className='my-5 font-bold'>
-                      {pedido.fecha} | ${pedido.total}
-              </Typography>
-              <Typography variant='p' color="blue-gray" className='my-5'>
-                      Numero de pedido: {pedido.numeroPedido}
-              </Typography>
-    
-              {
-                pedido.productos.map( producto => (
-                  <Avatar src={producto} alt="avatar" variant="square" />
+              <div className="flex flex-col">
+                <Typography variant='p' color="blue-gray" className='font-bold'>
+                        {pedido.fecha} | ${pedido.total}
+                </Typography>
+                <Typography variant='p' color="blue-gray" className=''>
+                        Numero de pedido: {pedido.numeroPedido}
+                </Typography>
 
-                ))
-              }
+                <div className="flex mt-5">
+                  {
+                    pedido.productos.map( producto => (
+                      <Avatar src={producto} alt="avatar" variant="square" className="border border-gray-400 mr-2" />
+
+                    ))
+                  }
+                </div>
+              </div>
+
     
             </ListItem>
            ))
