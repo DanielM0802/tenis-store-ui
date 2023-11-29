@@ -7,6 +7,8 @@ import Raquetas from "./pages/productos/Raquetas"
 import ProductoDetalle from "./pages/ProductoDetalle"
 import Registro from "./pages/Registro"
 import Perfil from "./pages/Perfil"
+import Accesorios from "./pages/productos/Accesorios"
+import Ropa from "./pages/productos/Ropa"
 
 function App() {
 
@@ -22,6 +24,8 @@ function App() {
         <Route path="/perfil" element={ <Perfil/> }/>
         <Route path="/productos/pelotas" element={ <Pelotas/> }/>
         <Route path="/productos/raquetas" element={ <Raquetas/> }/>
+        <Route path="/productos/accesorios" element={ <Accesorios/> }/>
+        <Route path="/productos/ropa" element={ <Ropa/> }/>
         <Route path="/productos/detalle" element={ <ProductoDetalle/> }/>
 
       </Routes>
