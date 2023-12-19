@@ -71,7 +71,7 @@ export function NavbarTenis() {
 
   //el usuario se deslogea
 
-  //user = null;
+  user = null;
  
   return (
     <Navbar className="mx-auto max-w-screen-xl px-4 py-2">

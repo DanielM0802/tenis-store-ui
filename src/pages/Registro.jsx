@@ -7,12 +7,13 @@ import {
   } from "@material-tailwind/react";
   import { NavLink, useNavigate } from "react-router-dom";
   import { useState } from "react"; 
+  import axios from 'axios';
 
   export function Registro() {
 
     const [usuario, setUsuario] = useState({
         nombre: "",
-        correo: "",
+        email: "",
         password: ""
     })
 
@@ -21,6 +22,8 @@ import {
 
     const [error, setError] = useState();
 
+    const [exito, setExito] = useState();
+
     const actualizarUsuario = (e) => {
         const propiedad = e.target.name;
         const valor = e.target.value;
@@ -28,13 +31,13 @@ import {
         setUsuario({ ...usuario,  [propiedad] : valor  })
     }
 
-    const registrarUsuario = (e) => {
+    const registrarUsuario = async (e) => {
         e.preventDefault();
 
 
-        const {nombre, correo, password} = usuario;
+        const {nombre, email, password} = usuario;
 
-        if ( !nombre || !correo || !password ) {
+        if ( !nombre || !email || !password ) {
             setError("Todos los campos son obligatorios")
             return;
         }
@@ -44,12 +47,35 @@ import {
 
         if( !passwordRegex.test( password ) ){
           setError("La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.")
+          //Hola12345
           return;
         }
         
         console.log('registrando usuario...')
-        navigate('/')
-        //llamar a ruta encargada de registrar usuarios
+
+        try {
+
+          // Llamar a API para registrar al usuario
+          const respuesta = await axios.post('http://localhost:3000/auth/register', {
+            nombre, 
+            email, 
+            password
+          })
+
+          const accessToken = respuesta.data.accessToken;
+          localStorage.setItem('token', accessToken);
+          setError(null)
+          setExito("Cuenta creada exitosamente!")
+
+        } catch (error) {
+          setError(error.response.data.message)
+          setExito(null);
+        }
+
+        setTimeout(() => {
+          navigate('/')
+        }, 5000);
+
 
     }
     
@@ -79,10 +105,10 @@ import {
               }}
             />
             <Typography variant="h6" color="blue-gray" className="-mb-3">
-              Tu correo
+              Tu email
             </Typography>
             <Input
-              name="correo"
+              name="email"
               onChange={actualizarUsuario}    
               size="lg"
               placeholder="name@mail.com"
@@ -112,7 +138,12 @@ import {
             <Alert color="red" className="my-4" variant="gradient">
                 <span>{error}</span>
             </Alert>
-
+          }    
+          {
+            exito && 
+            <Alert color="green" className="my-4" variant="gradient">
+                <span>{exito}</span>
+            </Alert>
           }    
 
           <Button type="submit" className="mt-6" fullWidth>
