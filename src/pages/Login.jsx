@@ -8,6 +8,7 @@ import {
   import { NavLink, useNavigate } from "react-router-dom";
   import { useState } from "react";
   import axios from "axios";
+  import { useAuth } from "../context/authContext";
    
   export function Login() {
 
@@ -17,7 +18,7 @@ import {
     const [exito, setExito] = useState();
 
     const navigate = useNavigate();
-
+    const {setToken} = useAuth();
 
     const loginUsuario = async (e) => {
       e.preventDefault();
@@ -31,7 +32,7 @@ import {
 
         const accessToken = respuesta.data.accessToken;
         localStorage.setItem('token', accessToken);
-
+        await setToken(accessToken)
         setError(null);
         setExito("Inicio de sesion exitoso!")
 

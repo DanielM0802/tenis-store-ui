@@ -10,10 +10,12 @@ import Perfil from "./pages/Perfil"
 import Accesorios from "./pages/productos/Accesorios"
 import Ropa from "./pages/productos/Ropa"
 import Carrito from "./pages/Carrito"
+import { AuthProvider } from "./context/authContext"
 
 function App() {
 
   return (
+    <AuthProvider>
     <Router>
       <NavbarTenis/>
       {/* <div className="flex justify-center pt-10"> */}
@@ -34,6 +36,7 @@ function App() {
       {/* </div> */}
 
     </Router>
+  </AuthProvider>
   )
 }
 

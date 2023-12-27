@@ -10,10 +10,43 @@ import {
   Input,
   Checkbox,
 } from "@material-tailwind/react";
+import { useAuth } from "../context/authContext";
+import axios from "axios";
+import { useState } from "react";
  
+
 function EditarDatos() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
+
+  const { token, usuario, setUsuario } = useAuth();
+
+  const [nombre, setNombre] = useState();
+  const [password, setPassword] = useState();
+
+  const actualizarUsuario = async () => {
+
+    try {
+      console.log(usuario._id)
+
+      const data =   {
+        nombre,
+        password
+      }
+      
+
+      const headers = {
+        Authorization: `Bearer ${token}`
+      }
+
+      const respuesta = await axios.put(`http://localhost:3000/usuarios/${usuario._id}`, data, {headers},)
+      setUsuario(respuesta.data)
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
  
   return (
     <>
@@ -33,18 +66,26 @@ function EditarDatos() {
             <Typography className="-mb-2" variant="h6">
               Nombre
             </Typography>
-            <Input label="nombre" size="lg" />
+            <Input 
+              onChange={ (e) => setNombre(e.target.value)  }
+              label="nombre" size="lg" 
+            />
 
             <Typography className="-mb-2" variant="h6">
-              Rut
+              Contraseña
             </Typography>
-            <Input label="rut" size="lg" />
+            <Input 
+              onChange={ (e) => setPassword(e.target.value)  }
+              label="password" size="lg" type="password" 
+            />
 
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" onClick={handleOpen} fullWidth>
-              Actualizar datos
-            </Button>
+            <div onClick={actualizarUsuario}>
+              <Button variant="gradient" onClick={handleOpen} fullWidth>
+                Actualizar datos
+              </Button>
+            </div>
             <Button variant="text" color="gray" onClick={handleOpen} fullWidth>
                 Cancelar
             </Button>
