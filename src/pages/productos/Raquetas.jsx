@@ -12,7 +12,7 @@ function Raquetas() {
   const consultarAPI = async () => {
     //simular consulta a api
     try {
-      const respuesta = await axios.get('http://localhost:3000/productos');
+      const respuesta = await axios.get('http://localhost:3000/productos/categoria/raquetas');
       setRaquetas(respuesta.data);
     } catch (error) {
       console.error('Error al obtener los productos: ', error)
@@ -40,9 +40,7 @@ function Raquetas() {
       <div className='grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
         {
           raquetas.map( raqueta => (
-            <Link key={raqueta._id} to="/productos/detalle" state={ {producto: raqueta} }>
-              <Producto producto={raqueta} />
-            </Link>
+            <Producto  key={raqueta._id} producto= {raqueta}/>
           ))
         }
       </div>

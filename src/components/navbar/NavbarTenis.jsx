@@ -34,18 +34,6 @@ function NavList() {
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-sm w-auto">Ropa</ListItem>
         </NavLink>
       
-      
-      {/* <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          Contact Us
-        </ListItem>
-      </Typography> */}
     </List>
   );
 }

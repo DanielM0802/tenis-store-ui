@@ -4,7 +4,7 @@ import { Typography, Button } from "@material-tailwind/react";
 function ProductoDetalle() {
 
     const {state} = useLocation();
-    const {nombre, url_imagen, precio_anterior, precio_actual, descripcion} = state.producto;
+    const {nombre, url_imagen, porcentajeDescuento, precio_actual, descripcion} = state.producto;
     console.log(state.producto)
   return (
     <div className='container px-12 mx-auto'>
@@ -29,7 +29,7 @@ function ProductoDetalle() {
                 </Typography>
                 <p>SKU: FT04898</p>
                 
-                <p>${precio_anterior}</p>
+                <p className="line-through">${ parseInt(precio_actual / ( 1 - porcentajeDescuento / 100 ))}</p>
                 <p>${precio_actual}</p>
               
                 <Typography variant='h2' color="blue-gray" className='text-xl my-5'>
