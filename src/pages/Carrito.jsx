@@ -2,6 +2,8 @@ import { Typography, Button } from "@material-tailwind/react"
 import ProductoCarro from "../components/ProductoCarro" 
 import { useCarrito } from "../context/carritoContext"
 import { useEffect } from "react";
+import axios from 'axios';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function Carrito() {
 
@@ -18,6 +20,31 @@ function Carrito() {
             Tu carrito esta vacío
         </Typography>
     )
+  }
+
+  const createOrder = async () => {
+    try {
+        
+        const respuesta = await axios.post(`http://localhost:3000/pagos/create-order`, {
+            carrito
+        })
+        return respuesta.data.id;
+    } catch (error) {
+        console.error('Error al crear la orden:', error)
+        throw error;
+    }
+
+  }
+
+  const onApprove = async (data) => {
+    try {
+        const respuesta = await axios.post(`http://localhost:3000/pagos/capture-order`, {
+            orderID: data.orderID
+        })
+        console.log(respuesta.data)
+    } catch (error) {
+        
+    }
   }
 
   return (
@@ -76,7 +103,16 @@ function Carrito() {
                         $ {`${totalCarrito}`}
                     </Typography>
                 </div>
-                <Button color="amber">Finalizar compra</Button>
+                
+                
+                <PayPalScriptProvider options={{ clientId: "AQ1G0Ds2ZvvWGw6gsLYepH_lcT-p2kQg0avjMCSNOBSrXXHzfQ4Yeyj2DMAPt-LbVCUWVuIkr0zb6xK5" }}>
+                    <PayPalButtons
+                        createOrder={createOrder}
+                        onApprove={onApprove}
+                    />
+                </PayPalScriptProvider>
+
+
             </div>
         </div>
         

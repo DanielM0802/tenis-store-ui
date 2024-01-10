@@ -32,6 +32,7 @@ export const CarritoProvider = ( {children} ) => {
     useEffect(() => {
         setTotalCarrito( calcularTotal()) ;
 
+        console.log(carrito)
     }, [carrito])
 
     const calcularTotal = () => {
