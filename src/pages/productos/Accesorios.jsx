@@ -11,7 +11,7 @@ function Accesorios() {
   const consultarAPI = async () => {
     //simular consulta a api
     try {
-      const respuesta = await axios.get('http://localhost:3000/productos/categoria/accesorios');
+      const respuesta = await axios.get('http://tenis-store-api-production.up.railway.app/productos/categoria/accesorios');
       setAccesorios(respuesta.data);
       console.log(respuesta.data)
     } catch (error) {

@@ -11,7 +11,7 @@ export const AuthProvider = ( {children} ) => {
     const guardarDatos = async () => {
         try {
             
-            const respuesta = await axios.get('http://localhost:3000/usuarios/detalles', {
+            const respuesta = await axios.get('http://tenis-store-api-production.up.railway.app/usuarios/detalles', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

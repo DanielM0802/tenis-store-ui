@@ -10,6 +10,7 @@ import Perfil from "./pages/Perfil"
 import Accesorios from "./pages/productos/Accesorios"
 import Ropa from "./pages/productos/Ropa"
 import Carrito from "./pages/Carrito"
+import OrdenConfirmada from "./pages/OrdenConfirmada"
 import { AuthProvider } from "./context/authContext"
 import { CarritoProvider } from "./context/carritoContext"
 
@@ -33,6 +34,8 @@ function App() {
             <Route path="/productos/ropa" element={ <Ropa/> }/>
             <Route path="/productos/detalle" element={ <ProductoDetalle/> }/>
             <Route path="/carrito" element={ <Carrito/> }/>
+            <Route path="/orden-confirmada" element={ <OrdenConfirmada/> }/>
+
 
           </Routes>
           {/* </div> */}

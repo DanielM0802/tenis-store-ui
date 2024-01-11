@@ -4,9 +4,14 @@ import { useCarrito } from "../context/carritoContext"
 import { useEffect } from "react";
 import axios from 'axios';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 function Carrito() {
 
+    const navigate = useNavigate();
+
+    const { usuario, token } = useAuth();
     const { carrito, totalCarrito, vaciarCarrito } = useCarrito();
 
 
@@ -23,11 +28,20 @@ function Carrito() {
   }
 
   const createOrder = async () => {
+
+
     try {
         
-        const respuesta = await axios.post(`http://localhost:3000/pagos/create-order`, {
-            carrito
-        })
+            const headers = {
+            Authorization: `Bearer ${token}`
+            }
+
+            const respuesta = await axios.post(
+                `http://tenis-store-api-production.up.railway.app/pagos/create-order`, 
+                { carrito },
+                {headers}
+            )
+
         return respuesta.data.id;
     } catch (error) {
         console.error('Error al crear la orden:', error)
@@ -38,10 +52,11 @@ function Carrito() {
 
   const onApprove = async (data) => {
     try {
-        const respuesta = await axios.post(`http://localhost:3000/pagos/capture-order`, {
+        const respuesta = await axios.post(`http://tenis-store-api-production.up.railway.app/pagos/capture-order`, {
             orderID: data.orderID
         })
-        console.log(respuesta.data)
+        vaciarCarrito();
+        navigate('/orden-confirmada', { state: {  data: respuesta.data }  })
     } catch (error) {
         
     }
@@ -104,13 +119,23 @@ function Carrito() {
                     </Typography>
                 </div>
                 
+                {
+                    usuario ?
                 
-                <PayPalScriptProvider options={{ clientId: "AQ1G0Ds2ZvvWGw6gsLYepH_lcT-p2kQg0avjMCSNOBSrXXHzfQ4Yeyj2DMAPt-LbVCUWVuIkr0zb6xK5" }}>
+                    <PayPalScriptProvider options={{ clientId: "AQ1G0Ds2ZvvWGw6gsLYepH_lcT-p2kQg0avjMCSNOBSrXXHzfQ4Yeyj2DMAPt-LbVCUWVuIkr0zb6xK5" }}>
                     <PayPalButtons
                         createOrder={createOrder}
                         onApprove={onApprove}
                     />
                 </PayPalScriptProvider>
+                :
+
+                <Typography variant='p' color="black" className=''>
+                    Debes iniciar sesión para continuar con el pago
+                </Typography>
+
+                }
+
 
 
             </div>

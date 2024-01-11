@@ -13,7 +13,7 @@ function Pelotas() {
   const consultarAPI = async () => {
     //simular consulta a api
     try {
-      const respuesta = await axios.get('http://localhost:3000/productos/categoria/pelotas');
+      const respuesta = await axios.get('http://tenis-store-api-production.up.railway.app/productos/categoria/pelotas');
       setPelotas(respuesta.data);
       console.log(respuesta.data)
     } catch (error) {

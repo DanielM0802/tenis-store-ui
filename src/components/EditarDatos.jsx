@@ -39,7 +39,7 @@ function EditarDatos() {
         Authorization: `Bearer ${token}`
       }
 
-      const respuesta = await axios.put(`http://localhost:3000/usuarios/${usuario._id}`, data, {headers},)
+      const respuesta = await axios.put(`http://tenis-store-api-production.up.railway.app/usuarios/${usuario._id}`, data, {headers},)
       setUsuario(respuesta.data)
     } catch (error) {
       console.log(error)

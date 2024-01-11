@@ -12,7 +12,7 @@ function Raquetas() {
   const consultarAPI = async () => {
     //simular consulta a api
     try {
-      const respuesta = await axios.get('http://localhost:3000/productos/categoria/raquetas');
+      const respuesta = await axios.get('http://tenis-store-api-production.up.railway.app/productos/categoria/raquetas');
       setRaquetas(respuesta.data);
     } catch (error) {
       console.error('Error al obtener los productos: ', error)

@@ -8,8 +8,11 @@ import {
   import { NavLink, useNavigate } from "react-router-dom";
   import { useState } from "react"; 
   import axios from 'axios';
+  import { useAuth } from "../context/authContext";
 
   export function Registro() {
+
+    const {setToken} = useAuth();
 
     const [usuario, setUsuario] = useState({
         nombre: "",
@@ -56,7 +59,7 @@ import {
         try {
 
           // Llamar a API para registrar al usuario
-          const respuesta = await axios.post('http://localhost:3000/auth/register', {
+          const respuesta = await axios.post('http://tenis-store-api-production.up.railway.app/auth/register', {
             nombre, 
             email, 
             password
@@ -64,6 +67,7 @@ import {
 
           const accessToken = respuesta.data.accessToken;
           localStorage.setItem('token', accessToken);
+          setToken(accessToken)
           setError(null)
           setExito("Cuenta creada exitosamente!")
 
