@@ -59,7 +59,7 @@ import {
         try {
 
           // Llamar a API para registrar al usuario
-          const respuesta = await axios.post('http://tenis-store-api-production.up.railway.app/auth/register', {
+          const respuesta = await axios.post('https://tenis-store-api-production.up.railway.app/auth/register', {
             nombre, 
             email, 
             password

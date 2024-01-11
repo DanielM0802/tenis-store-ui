@@ -11,7 +11,7 @@ function Ropa() {
     const consultarAPI = async () => {
       //simular consulta a api
       try {
-        const respuesta = await axios.get('http://tenis-store-api-production.up.railway.app/productos/categoria/ropa');
+        const respuesta = await axios.get('https://tenis-store-api-production.up.railway.app/productos/categoria/ropa');
         setRopa(respuesta.data);
         console.log(respuesta.data)
       } catch (error) {
